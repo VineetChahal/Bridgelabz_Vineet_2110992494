@@ -1,1 +1,2 @@
 hi this is a test for commiting a file to another branch
+here the new code added to the file from feature branch
