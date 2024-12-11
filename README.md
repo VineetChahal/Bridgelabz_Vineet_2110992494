@@ -1,10 +1,8 @@
-## Date:- 09 December 2024
+### Date:- 09 December 2024
 
-## Topics Covered: Basic Git commands (`git status`, `git add`, `git commit`, `git push`, `git pull`) , File management with `echo`, `touch`, `cat`, and `nano` , Branch management (`git checkout`, `git merge`, `git remote`)
+### Topics Covered: Basic Git commands (`git status`, `git add`, `git commit`, `git push`, `git pull`) , File management with `echo`, `touch`, `cat`, and `nano` , Branch management (`git checkout`, `git merge`, `git remote`)
 
 ---
-
-## Git Command Basics
 
 ### **git status**
 - **What does it do?**
