@@ -1,5 +1,5 @@
 ## Date:- 11 December 2024
-## Topics covered are REBASE, MERGE, ORPHAN BRANCH, PRUNE.
+## Topics covered: REBASE, MERGE, ORPHAN BRANCH, PRUNE.
 
 #### 1. Git Rebase Commands
   +  git rebase <base-branch>: Replays commits on top of <base-branch>, updating your branch.
