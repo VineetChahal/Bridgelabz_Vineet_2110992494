@@ -1,6 +1,6 @@
-# DATE: 18 December 2024
+## DATE: 20 December 2024
 
-## Overview
+# Overview
 This branch focuses on concepts in Object-Oriented Programming (OOPs) and the practical implementation of different iterators in JavaScript. It emphasizes the foundational principles of OOP and how iterators streamline data traversal in JavaScript.
 
 ---
