@@ -9,4 +9,4 @@
 - [X] **17 December 2024**
 - [X] **18 December 2024**
 - [ ] **19 December 2024**
-- [ ] **20 December 2024**
+- [X] **20 December 2024**
