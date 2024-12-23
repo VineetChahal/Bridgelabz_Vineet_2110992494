@@ -1,4 +1,4 @@
-###DATE: 23 December 2024
+### DATE: 23 December 2024
 
 ### Overview
 This branch focuses on core JavaScript concepts, emphasizing the mechanics of the Event Loop, the role of Event Handlers, Type Conversions, and the impact of the "use strict" directive. It provides a comprehensive understanding of these topics to enhance both foundational knowledge and practical coding skills.
