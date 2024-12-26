@@ -1,4 +1,4 @@
-### DATE: 23 December 2024
+### DATE: 24 December 2024
 
 ### Overview
 This branch focuses on core JavaScript concepts, emphasizing the mechanics of Comparisons, Conditional Branching, and User Interaction through methods like `alert`, `prompt`, and `confirm`. It provides insights into their practical use and best practices for effective coding.
