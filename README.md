@@ -15,3 +15,14 @@
 - [X] **27 December 2024**
 - [X] **30 December 2024**
 - [X] **31 December 2024**
+
+
+## Weekly Progress Checklist - January 2025
+
+- [X] **01 January 2025**
+- [ ] **00 January 2025**
+- [ ] **00 January 2025**
+- [ ] **00 January 2025**
+- [ ] **00 January 2025**
+- [ ] **00 January 2025**
+
