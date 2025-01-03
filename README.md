@@ -20,7 +20,7 @@
 ## Weekly Progress Checklist - January 2025
 
 - [X] **01 January 2025**
-- [ ] **00 January 2025**
+- [X] **02 January 2025**
 - [ ] **00 January 2025**
 - [ ] **00 January 2025**
 - [ ] **00 January 2025**
