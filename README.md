@@ -1,34 +1,36 @@
-## Weekly Progress Checklist - December 2024
+### DATE: 9 January 2025
 
-- [X] **09 December 2024**
-- [X] **10 December 2024**
-- [X] **11 December 2024**
-- [X] **12 December 2024**
-- [X] **13 December 2024**
-- [X] **16 December 2024**
-- [X] **17 December 2024**
-- [X] **18 December 2024**
-- [X] **20 December 2024**
-- [X] **23 December 2024**
-- [X] **24 December 2024**
-- [X] **26 December 2024**
-- [X] **27 December 2024**
-- [X] **30 December 2024**
-- [X] **31 December 2024**
+#### Overview
+This branch focuses on practicing JavaScript concepts and understanding various sorting algorithms, including **Bubble Sort**, **Selection Sort**, **Insertion Sort**, and **Merge Sort**. The practice involved implementing these algorithms and solving related problems to strengthen problem-solving skills and algorithmic thinking.
 
+#### Topics Covered
 
-## Weekly Progress Checklist - January 2025
+**JavaScript Practice Questions**
+Practiced questions provided by the trainer from the BridgeLabz.
 
-- [X] **01 January 2025**
-- [X] **02 January 2025**
-- [X] **03 January 2025**
-- [X] **06 January 2025**
-- [X] **07 January 2025**
-- [X] **08 January 2025**
-- [X] **09 January 2025**
-- [ ] **00 January 2025**
-- [ ] **00 January 2025**
-- [ ] **00 January 2025**
-- [ ] **00 January 2025**
-- [ ] **00 January 2025**
+**Sorting Algorithms**
+Sorting algorithms arrange elements in a specific order. The following algorithms were studied:
+
+**Bubble Sort**
+- **Description**: Repeatedly swaps adjacent elements if they are in the wrong order.
+- **Time Complexity**: O(n^2) in the worst and average cases; O(n) in the best case (already sorted).
+
+**Selection Sort**
+- **Description**: Selects the smallest element from the unsorted portion and swaps it with the first unsorted element.
+- **Time Complexity**: O(n^2) in all cases.
+
+**Insertion Sort**
+- **Description**: Builds the sorted array one element at a time by inserting each element into its correct position.
+- **Time Complexity**: O(n^2) in the worst and average cases; O(n) in the best case (already sorted).
+
+**Merge Sort**
+- **Description**: Divides the array into halves, recursively sorts them, and merges the sorted halves.
+- **Time Complexity**: O(n log n) in all cases.
+
+**Key Learnings**
+1. Sorting algorithms have varying efficiency based on input size and data structure.
+2. Bubble, Selection, and Insertion sorts are simple but inefficient for large datasets.
+3. Merge Sort is more efficient due to its divide-and-conquer approach but requires additional memory for merging.
+
+---
 
