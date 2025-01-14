@@ -26,8 +26,8 @@
 - [X] **07 January 2025**
 - [X] **08 January 2025**
 - [X] **09 January 2025**
-- [ ] **00 January 2025**
-- [ ] **00 January 2025**
+- [X] **10 January 2025**
+- [X] **13 January 2025**
 - [ ] **00 January 2025**
 - [ ] **00 January 2025**
 - [ ] **00 January 2025**
