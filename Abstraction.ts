@@ -1,3 +1,4 @@
+
 /**
  * 1. Abstraction hides complex implementation details and shows only the necessary features of an object.
  * 2. In TypeScript, abstraction is achieved using abstract classes and methods.
