@@ -1,5 +1,3 @@
-# README
-
 **Date:** January 14, 2025
 
 ## Topics Covered
@@ -30,12 +28,6 @@ A stack is a linear data structure that follows the Last In, First Out (LIFO) pr
 - **peek**: Retrieves the top element of the stack without removing it, with a defined return type.
 - **display**: Displays all elements in the stack, ensuring consistent type handling.
 
-### Class
-In TypeScript, a class is a blueprint for creating objects, with support for access modifiers (e.g., `public`, `private`, `protected`) to enforce encapsulation and type safety.
-
-### Objects
-Objects in TypeScript are instances of classes or defined using object type annotations. They support key-value pairs with explicit type definitions.
-
 ### Inheritance
 Inheritance in TypeScript allows a class to derive properties and behaviors from another class, while maintaining type safety.
 - **Single Inheritance**: One class inherits from another class.
@@ -52,9 +44,6 @@ Polymorphism in TypeScript allows methods to have multiple implementations, ensu
 
 ### Abstraction
 Abstraction in TypeScript is implemented using abstract classes and interfaces. It hides implementation details and enforces a contract for derived classes.
-
-### Promise
-A Promise in TypeScript is an object representing the eventual completion or failure of an asynchronous operation, with support for type annotations to specify the resolved value.
 
 ### ECMAScript (ES6 to ES10)
 - **ES6 (2015)**: Introduced features like `let`/`const`, arrow functions, classes, template literals, and modules.
