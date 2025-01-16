@@ -30,6 +30,6 @@
 - [X] **13 January 2025**
 - [x] **14 January 2025**
 - [x] **15 January 2025**
-- [ ] **16 January 2025**
+- [X] **16 January 2025**
 - [ ] **00 January 2025**
 
