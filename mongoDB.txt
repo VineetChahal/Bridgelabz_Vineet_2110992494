@@ -1,0 +1,248 @@
+MongoDB -> Document database : stores data in JSON(JavaScript Object Notation) format called BSON().
+In MongoDB, a record is a document : a dataStructure composed of Key Value pair similar to the structure of JSON Object.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*
+ - JSON(JavaScript Object Notation)
+ - It is a lightweight data interchange format
+ - language independent 
+ - JSON format is text only 
+ - JSON format is identical to the code for creating JavaScript Objects. coz of this it is easier 
+   for JavaScript program to convert this JSON data into native JavaScript object.
+
+ - Example: below is an employee object: an array of 3 employee records(objects):
+    -- {
+        "employee" : [
+            {"firstName" : "John", "LastName" : "Doe"},
+            {"firstName" : "Anna", "LastName" : "Smith"},
+            {"firstName" : "Peter", "LastName" : "Jones"},
+        ]
+    }
+
+ - JSON SYNTAX RULES:
+    -- Data is in name/value pairs.
+    -- Data is seperated by commas.
+    -- Curly braces "{}" hold objects
+    -- Square brackets "[]" hold arrays
+
+ - JSON Data is written in name/value pairs, like JavaScript object properties.
+ - both the name/value pair must be in double quotes, followed by a colon
+ - JSON objects are written in Curly braces, can contain multiple name/value pairs.
+   {"firstName" : "John", "LastName" : "Doe"}
+ - JSON arrays are written in Square brackets, can contain objects
+    -- Example:
+        --- "studend" : [
+            {"Name" : "Vineet", "Marks" : "91"},
+            {"Name" : "Navneet", "Marks" : "80"},
+            {"Name" : "Mandeep", "Marks" : "90"},
+        ]
+
+ - JSON.parse() to convert string into JavaScript object.
+*/
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Records -> In MongoDB database, records are called documents.field value : number, strings, booleans, arrays, nested documents
+Example :
+    -- {
+       book : "ikegai", 
+       author : "snowblack", 
+       publishedIn : "2023", 
+       category : "self help", 
+       tags : "life, rules, happiness", 
+    }
+
+    -- db.posts.find( {category: "self help"} )
+    -- result :
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SQL VS DOCUMENT DATABASES ->
+| Feature                | SQL Databases                          | Document Databases                  |
+|------------------------|----------------------------------------|-------------------------------------|
+| Data Model             | Relational (tables, rows, columns)     | Document-oriented (JSON/BSON)       |
+| Schema                 | Fixed schema                           | Dynamic schema                      |
+| Transactions           | ACID transactions                      | Limited transactions                |
+| Scalability            | Vertical scaling                       | Horizontal scaling                  |
+| Query Language         | SQL (Structured Query Language)        | Varies (e.g., MongoDB uses MQL)     |
+| Joins                  | Supports complex joins                 | Limited support for joins           |
+| Flexibility            | Less flexible due to fixed schema      | More flexible due to dynamic schema |
+| Performance            | Can be slower for hierarchical data    | Optimized for hierarchical data     |
+| Use Cases              | Complex queries, transactions          | Big data, real-time analytics       |
+
+SQL -> Relational Database, stores data in seperate tables, data is searched in these table and joined together to get the desired result.
+MongoDB -> document database(non-Relational database), still Relational data can be stored in it but in a different way : non-tabular way.
+           stores data in flexible documents. dont need to seperate the data into multiple table making it easier to read the data very fast.
+           can group the data in multiple groups called COLLECTIONS.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MongoDB Query API -> its the way you interact with your data. Can be used in two ways: 1.CRUD Operations 2.Aggreation Pipelines
+    -- can perform :
+        --- Adhoc queries for the programming language you use.
+        --- Data transformation using Aggreation Pipelines.
+        --- Document join support to combine data from different collections.
+        --- Graph and geospatial queries.
+        --- Full text search.
+        --- Indexing to inprove MongoDB Query Performance.
+        --- Time series analysis.
+
+CREATE/SHOW DATABASES USING MONGOSH -> after connecting to database using mongosh, in terminal:
+ - db -> to see the database you are in. ( if used the string for connection provided by atlas - connected to "myFirstDataBase" database )
+ - show dbs -> to show all databases.( "myFirstDataBase" will not be listed coz its an empty database, which are non-existant )
+ - use databaseName -> can change or create new database by using "use".( Example : use blog -> a database name blog will be created and will be in use )
+
+NOTE:-> In MongoDB, database is not created until it gets some contet.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE COLLECTION USING MONGOSH -> 2 ways to achieve this :
+ - Method 1:
+    -- createCollection() -> by using "createCollection()" database method.
+        --- Example : db.createCollection("posts)
+ - Method 2:
+    -- creating a collection during INSERT process.
+        --- Example : db.posts.insertOne(object) -> assuming object is a valid JavaScript object containing post data.
+both the above method will create a collection(posts), but the below method will also contain the specific data realated to it.
+
+NOTE:-> In MongoDB, a collection is not actually created until its gets some content.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MONGODB MONGOSH INSERT -> 2 methods to insert document into a MongoDB database :
+ - Method 1:
+    -- insertOne() -> to insert a only a single document in the database.
+        --- Example:
+            ---- db.posts.insertOne({
+                title : "SnowBlack",
+                body : "SnowBlack is my game alias",
+                category : "game",
+                likes : 1,
+                tags : ["game", "TPS", "best"],
+                date : Date(),
+            })
+
+NOTE:-> if try to insert documents into a collection that does not exist, MongoDB will create the collection automatically.
+
+ - Method 2:
+    -- insertMany() -> to insert multiple documents at once. It inserts an array of objects ino the database,
+        --- Example:
+            ---- db.posts.insertMany([
+                {
+                    title : "book 1",
+                    body : "Body of the post",
+                    category : "Event"
+                    likes : 1,
+                    tags : ["news", "events"],
+                    date : Date(),
+                }
+                {
+                    title : "book 2",
+                    body : "Body of the post",
+                    category : "Event"
+                    likes : 2,
+                    tags : ["news", "events"],
+                    date : Date(),
+                }
+                {
+                    title : "book 3",
+                    body : "Body of the post",
+                    category : "Event"
+                    likes : 3,
+                    tags : ["news", "events"],
+                    date : Date(),
+                }
+                {
+                    title : "book 4",
+                    body : "Body of the post",
+                    category : "Event"
+                    likes : 4,
+                    tags : ["news", "events"],
+                    date : Date(),
+                }
+                {
+                    title : "book 5",
+                    body : "Body of the post",
+                    category : "Event"
+                    likes : 5,
+                    tags : ["news", "events"],
+                    date : Date(),
+                }
+            ])
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MONGODB MONGOSH FIND -> 2 methods to find and select data from the MongoDB collection :
+ - Method 1:
+    -- find() -> to select data from a collection. This method accepts a query object. If left empty, return all documents.
+        --- Example: db.posts.find()
+ - Method 2:
+    -- findOne() -> to select only one document. Takes a query object. if left empty, return the first document it finds.
+        --- Example: db.posts.findOne()
+
+NOTE:-> findOne will only return the first match it finds.
+
+Querying Data -> to query/filter data we can include a query in the above 2 methods.
+    -- Example: db.posts.find( {category: "news"} )
+
+Projection -> both the find and findone methods accept a second parameter called Projection. this parameter is an object that describes which field to include in the 
+              result. This parameter is optional. if not used/ omitted, all fields will be included in the result.
+    -- Example: db.posts.find( {}, {title: 1, date: 1} ) -> this will only display time and date fields in the results.
+
+NOTE:-> In the result "_id" field is also inclded thought not specified in the command thats coz this field will always be included unless specifically excluded.
+        We use 1 to include a field and 0 to exclud a field.
+            - Example: db.posts.find( {}, {_id: 0, title: 1, date: 1} )
+        do not use both 0 and 1 in the same object. either use 0 to specify the fields need to be excluded or 1 for those needed to be included.
+            - Example: db.posts.find( {}, {category: 0} )
+        will get an error if use 0 and 1 in the same object
+            - Example: db.posts.find( {}, {title: 1, date: 0})
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MONGODB MONGOSH UPDATE -> 2 methods to update an existing document 1. updateOne() 2. updateMany(). Both have 2 parameters 1. A query object to define which document or 
+                          documents shoud be updated. 2. An object defining the updated data.
+ - Method 1:
+    - updateOne() -> A method to update the first document that is found matching the provided query.
+        -- Example: db.posts.updateOne( {title: "book 4}, { $set: {like: 2}} ) -> $set will update the like on post titled "book 4" to 2.
+
+Insert if not found -> if i need to insert the document if its not found i will use "upsert" option. -> update the documet, but if not found insert it.
+ - Example:
+    -- db.posts.updateOne(
+        {title : "book 6"},
+        {
+            $set:{
+                title : "book 6",
+                body : "Body of the post",
+                category : "Event"
+                likes : 5,
+                tags : ["news", "events"],
+                date : Date(),
+            }
+        },
+        {upsert: true},
+    )
+    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
