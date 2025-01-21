@@ -32,8 +32,8 @@
 - [x] **15 January 2025**
 - [X] **16 January 2025**
 - [X] **17 January 2025**
-- [X] **20 January 2025**
-- [ ] **00 January 2025**
+- [X] **20 January 2025** -> Mongodb and Mongoose
+- [X] **21 January 2025**
 - [ ] **00 January 2025**
 - [ ] **00 January 2025**
 - [ ] **00 January 2025**
