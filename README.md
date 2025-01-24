@@ -34,7 +34,7 @@
 - [X] **17 January 2025**
 - [X] **20 January 2025** -> Mongodb and Mongoose
 - [X] **21 January 2025** -> MongoDb and Mongoose
-- [ ] **00 January 2025**
-- [ ] **00 January 2025**
+- [X] **23 January 2025** -> Backend flow
+- [X] **24 January 2025** -> Backend flow
 - [ ] **00 January 2025**
 
