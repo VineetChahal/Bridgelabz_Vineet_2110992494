@@ -1,0 +1,533 @@
+MongoDB -> Document database : stores data in JSON(JavaScript Object Notation) format called BSON().
+In MongoDB, a record is a document : a dataStructure composed of Key Value pair similar to the structure of JSON Object.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*
+ - JSON(JavaScript Object Notation)
+ - It is a lightweight data interchange format
+ - language independent 
+ - JSON format is text only 
+ - JSON format is identical to the code for creating JavaScript Objects. coz of this it is easier 
+   for JavaScript program to convert this JSON data into native JavaScript object.
+
+ - Example: below is an employee object: an array of 3 employee records(objects):
+    -- {
+        "employee" : [
+            {"firstName" : "John", "LastName" : "Doe"},
+            {"firstName" : "Anna", "LastName" : "Smith"},
+            {"firstName" : "Peter", "LastName" : "Jones"},
+        ]
+    }
+
+ - JSON SYNTAX RULES:
+    -- Data is in name/value pairs.
+    -- Data is seperated by commas.
+    -- Curly braces "{}" hold objects
+    -- Square brackets "[]" hold arrays
+
+ - JSON Data is written in name/value pairs, like JavaScript object properties.
+ - both the name/value pair must be in double quotes, followed by a colon
+ - JSON objects are written in Curly braces, can contain multiple name/value pairs.
+   {"firstName" : "John", "LastName" : "Doe"}
+ - JSON arrays are written in Square brackets, can contain objects
+    -- Example:
+        --- "studend" : [
+            {"Name" : "Vineet", "Marks" : "91"},
+            {"Name" : "Navneet", "Marks" : "80"},
+            {"Name" : "Mandeep", "Marks" : "90"},
+        ]
+
+ - JSON.parse() to convert string into JavaScript object.
+*/
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Records -> In MongoDB database, records are called documents.field value : number, strings, booleans, arrays, nested documents
+Example :
+    -- {
+       book : "ikegai", 
+       author : "snowblack", 
+       publishedIn : "2023", 
+       category : "self help", 
+       tags : "life, rules, happiness", 
+    }
+
+    -- db.posts.find( {category: "self help"} )
+    -- result :
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SQL VS DOCUMENT DATABASES ->
+| Feature                | SQL Databases                          | Document Databases                  |
+|------------------------|----------------------------------------|-------------------------------------|
+| Data Model             | Relational (tables, rows, columns)     | Document-oriented (JSON/BSON)       |
+| Schema                 | Fixed schema                           | Dynamic schema                      |
+| Transactions           | ACID transactions                      | Limited transactions                |
+| Scalability            | Vertical scaling                       | Horizontal scaling                  |
+| Query Language         | SQL (Structured Query Language)        | Varies (e.g., MongoDB uses MQL)     |
+| Joins                  | Supports complex joins                 | Limited support for joins           |
+| Flexibility            | Less flexible due to fixed schema      | More flexible due to dynamic schema |
+| Performance            | Can be slower for hierarchical data    | Optimized for hierarchical data     |
+| Use Cases              | Complex queries, transactions          | Big data, real-time analytics       |
+
+SQL -> Relational Database, stores data in seperate tables, data is searched in these table and joined together to get the desired result.
+MongoDB -> document database(non-Relational database), still Relational data can be stored in it but in a different way : non-tabular way.
+           stores data in flexible documents. dont need to seperate the data into multiple table making it easier to read the data very fast.
+           can group the data in multiple groups called COLLECTIONS.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MongoDB Query API -> its the way you interact with your data. Can be used in two ways: 1.CRUD Operations 2.Aggreation Pipelines
+    -- can perform :
+        --- Adhoc queries for the programming language you use.
+        --- Data transformation using Aggreation Pipelines.
+        --- Document join support to combine data from different collections.
+        --- Graph and geospatial queries.
+        --- Full text search.
+        --- Indexing to inprove MongoDB Query Performance.
+        --- Time series analysis.
+
+CREATE/SHOW DATABASES USING MONGOSH -> after connecting to database using mongosh, in terminal:
+ - db -> to see the database you are in. ( if used the string for connection provided by atlas - connected to "myFirstDataBase" database )
+ - show dbs -> to show all databases.( "myFirstDataBase" will not be listed coz its an empty database, which are non-existant )
+ - use databaseName -> can change or create new database by using "use".( Example : use blog -> a database name blog will be created and will be in use )
+
+NOTE:-> In MongoDB, database is not created until it gets some contet.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE COLLECTION USING MONGOSH -> 2 ways to achieve this :
+ - Method 1:
+    -- createCollection() -> by using "createCollection()" database method.
+        --- Example : db.createCollection("posts)
+ - Method 2:
+    -- creating a collection during INSERT process.
+        --- Example : db.posts.insertOne(object) -> assuming object is a valid JavaScript object containing post data.
+both the above method will create a collection(posts), but the below method will also contain the specific data realated to it.
+
+NOTE:-> In MongoDB, a collection is not actually created until its gets some content.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MONGODB MONGOSH INSERT -> 2 methods to insert document into a MongoDB database :
+ - Method 1:
+    -- insertOne() -> to insert a only a single document in the database.
+        --- Example:
+            ---- db.posts.insertOne({
+                title : "SnowBlack",
+                body : "SnowBlack is my game alias",
+                category : "game",
+                likes : 1,
+                tags : ["game", "TPS", "best"],
+                date : Date(),
+            })
+
+NOTE:-> if try to insert documents into a collection that does not exist, MongoDB will create the collection automatically.
+
+ - Method 2:
+    -- insertMany() -> to insert multiple documents at once. It inserts an array of objects ino the database,
+        --- Example:
+            ---- db.posts.insertMany([
+                {
+                    title : "book 1",
+                    body : "Body of the post",
+                    category : "Event"
+                    likes : 1,
+                    tags : ["news", "events"],
+                    date : Date(),
+                }
+                {
+                    title : "book 2",
+                    body : "Body of the post",
+                    category : "Event"
+                    likes : 2,
+                    tags : ["news", "events"],
+                    date : Date(),
+                }
+                {
+                    title : "book 3",
+                    body : "Body of the post",
+                    category : "Event"
+                    likes : 3,
+                    tags : ["news", "events"],
+                    date : Date(),
+                }
+                {
+                    title : "book 4",
+                    body : "Body of the post",
+                    category : "Event"
+                    likes : 4,
+                    tags : ["news", "events"],
+                    date : Date(),
+                }
+                {
+                    title : "book 5",
+                    body : "Body of the post",
+                    category : "Event"
+                    likes : 5,
+                    tags : ["news", "events"],
+                    date : Date(),
+                }
+            ])
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MONGODB MONGOSH FIND -> 2 methods to find and select data from the MongoDB collection :
+ - Method 1:
+    -- find() -> to select data from a collection. This method accepts a query object. If left empty, return all documents.
+        --- Example: db.posts.find()
+ - Method 2:
+    -- findOne() -> to select only one document. Takes a query object. if left empty, return the first document it finds.
+        --- Example: db.posts.findOne()
+
+NOTE:-> findOne will only return the first match it finds.
+
+Querying Data -> to query/filter data we can include a query in the above 2 methods.
+    -- Example: db.posts.find( {category: "news"} )
+
+Projection -> both the find and findone methods accept a second parameter called Projection. this parameter is an object that describes which field to include in the 
+              result. This parameter is optional. if not used/ omitted, all fields will be included in the result.
+    -- Example: db.posts.find( {}, {title: 1, date: 1} ) -> this will only display time and date fields in the results.
+
+NOTE:-> In the result "_id" field is also inclded thought not specified in the command thats coz this field will always be included unless specifically excluded.
+        We use 1 to include a field and 0 to exclud a field.
+            - Example: db.posts.find( {}, {_id: 0, title: 1, date: 1} )
+        do not use both 0 and 1 in the same object. either use 0 to specify the fields need to be excluded or 1 for those needed to be included.
+            - Example: db.posts.find( {}, {category: 0} )
+        will get an error if use 0 and 1 in the same object
+            - Example: db.posts.find( {}, {title: 1, date: 0})
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MONGODB MONGOSH UPDATE -> 2 methods to update an existing document 1. updateOne() 2. updateMany(). Both have 2 parameters 1. A query object to define which document or 
+                          documents shoud be updated. 2. An object defining the updated data.
+ - Method 1:
+    -- updateOne() -> A method to update the first document that is found matching the provided query.
+        --- Example: db.posts.updateOne( {title: "book 4}, { $set: {like: 2}} ) -> $set will update the like on post titled "book 4" to 2.
+
+Insert if not found -> if i need to insert the document if its not found i will use "upsert" option. -> update the documet, but if not found insert it.
+ - Example:
+    -- db.posts.updateOne(
+        {title : "book 6"},
+        {
+            $set:{
+                title : "book 6",
+                body : "Body of the post",
+                category : "Event"
+                likes : 5,
+                tags : ["news", "events"],
+                date : Date(),
+            }
+        },
+        {upsert: true},
+    )
+
+ - Method 2:
+    -- updateMany() -> it will update all documents that match the query. {"$inc" is used to increment the properties of the object.}
+        --- Example: db.posts.updateMany( {}, { $inc: {likes: 2} }) -> it will increment the like field of all the objects by 2.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MONGODB MONGOSH DELETE -> 2 methods to delete to delete the documents 1. deleteOne() 2. deleteMany(). accepts a query object and delete the matching documents.
+ - Method 1:
+    -- deleteOne() -> delete the first document that matches the query.
+        --- Example: db.posts.deleteOne({title: "Book 5"})
+ - Method 2: 
+    -- deleteMany() -> delete all the documents that matches the query.
+        --- Example: db.posts.deleteMany({category: "Technology"})
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MONGODB QUERY OPERATORS -> used to comapare and referece document fields. Mainly three types 1. Comparison 2. Logical 3. Evaluation
+ - Comparison -> operators used in queries to comapare the values :
+    -- $eq -> equal 
+    -- $ne -> not-equal 
+    -- $gt -> greater than
+    -- $gte -> greater than equal to 
+    -- $lt -> less than
+    -- $lte -> less than equal to 
+    -- $in -> matches value within the array
+
+ - Logical -> operators that can logically compare multiple queries :
+    -- $and -> returns documents where both the queries match
+    -- $or -> returns documents where either query matches
+    -- $nor -> returns documents where both the queries fail to match
+    -- $not -> returns documents where the query does not match 
+
+ - Evaluation -> operators that assist in Evaluating the documents.
+    -- $regex -> allow use of regular expressions when evaluating documents
+    -- $text -> performs a text search
+    -- $where -> uses a JavaScript expression to match documents
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MONGODB UPDATE OPERATORS -> operators to update documents.
+ - Fields -> operators used to updatethe fields:
+    -- $currentDate -> sets the field value to the current date.
+    -- $inc -> increment the field value.
+    -- $set -> sets the field value.
+    -- $unset -> removes the field from the document.
+
+ - Array -> operators to assis with updating the arrays.
+    -- $addToSet -> adds distinct elements to an array.
+    -- $pop -> removes the first/last element of the array.
+    -- $pull -> remove all elements of the array that matches teh query.
+    -- $push -> add an elements to an array.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+AGGREGATION PIPELINES -> It is a framework for processig and transfroming data through a sequence of stages, where each stage performs an operation like filtering,
+                         grouping, sorting or projecting on documents.(basically operates the queries on the document). these pipelines allow for effiecient data analysis 
+                         and manipulation directly within the documents.
+                         The order of these stages is important as each stage acts upon the result of its previous stage.
+ - Example:
+    -- db.posts.aggregrate([
+        // stage 1 -> find the documents that contain more than 1 like
+        {
+            $match: {likes: {$gt: 1}},
+        }
+        // stage 2 -> group documents by category and sum each categories likes
+        {
+            $group: { _id: "$category", totallikes: {$sum: "$likes"}}
+        }
+    ])
+
+ - $group -> group the document by unique expressions
+    -- Example:
+        ---db.posts.aggregrate([
+            {
+                $group: {_id: "$property_type},
+            }
+        ])
+    -- it will return distinct values from the property_type field.
+
+ - $limit -> limit the nummber of documents passed onto the next stage.
+    -- Example:
+        --- db.movies.aggregrate([ {$limit: 1} ])
+    -- it will return 1 movie from the collection.
+
+ - $project -> it will only pass specified fields onto the next stage. (it is the same projection used during the find() method)
+    -- Example:
+        --- db.posts.aggregrate([
+            {
+                $project: {
+                    title: 1,
+                    likes: 1,
+                }
+            }
+        ])
+    -- it will only pass title, likes to the next stage.
+    -- _id will be included unless excluded in project specifically.
+    -- you can only use 0 and 1 both in 1 object with _id. if used otherwise will give an error.
+
+ - $sort -> sort all documents in a specified order. 1 for ascending, -1 for decending.
+    -- Example:
+        --- db.listingsAndReviews.aggregrate([
+            {
+                $sort: {"accomodates": -1},
+            },
+            {
+                $project: {
+                    "name": 1,
+                    "accomodates": 1,
+                }
+            },
+            {
+                $limit: 5,
+            },
+        ])
+    -- This will return top 5 in decending order by the accomodates field.
+
+ - $match -> it behave like find. will filter the documents that match the query provided.[using match early in pipleline can increase the performace as it limits the
+             number of documents sent to next stage]
+    -- Example:
+        --- db.listingsAndReviews.aggregrate([
+            {$match: {property_type: "House"}},
+            {$limit: 2},
+            {$project: {
+                "name": 1,
+                "bedrooms": 1,
+                "price": 1,
+            }}
+        ])
+    -- it will return document that have the property_type of "House".
+
+ - $addFields -> add new fields to the document.
+    -- Example:
+        --- db.restaurants.aggregrate([
+            {
+                $addFields: {
+                    avgGrade: {$avg: "$grades.score"},
+                }
+            },
+            {
+                $project: {
+                    "name": 1,
+                    "avgGrade": 1,
+                }
+            },
+            {
+                $limit: 5,
+            }
+        ])
+    -- reutrn document along with a new field "avgGrade" which contain average of each restaurants grade.score.
+
+ - $count -> counts the total number documents passed from the previous stage.
+    -- Example:
+        --- db.restaurants.aggregrate([
+            {
+                $match: {"cuisine": "Chinese"},
+            },
+            {
+                $count: "totalChinese",
+            },
+        ])
+    -- will return the umber of documentsat the count stage as a field called totalChinese.
+
+ - $lookup -> perform a left outer joine on a collection in the same database. require 4 fields:
+    -- from -> collection to use for the lookup in the same database
+    -- localField -> field in the primary collection that can act as a primary key in the "from" collection.
+    -- foreignField -> field in th "from" collection that can be used as a unique key identifier in the primary collection.
+    -- as -> name of the new field that will contain the matching documents from the "from" collection.
+        --- Example:
+            ---- db.comments.aggregrate([
+                {
+                    $lookup: {
+                        $from: "movies",
+                        $localField: "movies_id",
+                        $foreignField: "_id",
+                        as: "movie_details",
+                    }
+                },
+                {
+                    $limit: 5,
+                },
+            ])
+        --- return movie data along with each comment.
+
+ - $out -> write the result from a returned document from a pipeline to a collection. It must be the last stage in aggregration pipeline.
+    -- Example:
+        ---db.listingsAndReviews.aggregrate([
+            {
+                $group: {
+                    _id: "$property_type",
+                    properties: {
+                        $push: {
+                            name : "$name",
+                            accomodates: "$accomodates",
+                            price: "$price",
+                        },
+                    },
+                },
+            },
+            { $out: "properties_by_type"},
+        ])
+    -- the first stage will group the property_type and include name, accomodates, price fields. the out stage will create a new collection called "properties_by_type" in 
+       the current database and store the resulting documents into that collection.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+INDEXING AND SEARCH ->  MongoDB comes with a full-text search engine that can be used to search for documents in the collection.
+
+ - INDEXING -> Indexes are special data structures that store a small portion of the collection's data set in an easy-to-traverse form. The index stores the value of a 
+               specific field or set of fields, ordered by the value of the field. Indexes support the efficient execution of queries in MongoDB.
+
+ - Types of Indexes:
+    1. Single Field Index:
+        - Indexes on a single field.
+        - Example: db.collection.createIndex({field: 1}) -> 1 for ascending order, -1 for descending order.
+
+    2. Compound Index:
+       - Indexes on multiple fields.
+       - Example: db.collection.createIndex({field1: 1, field2: -1})
+
+    3. Multikey Index:
+       - Indexes on array fields.
+       - Example: db.collection.createIndex({arrayField: 1})
+
+ - Creating Indexes:
+    - To create an index, use the createIndex() method.
+        -- Example: db.collection.createIndex({field: 1})
+
+ - Listing Indexes:
+    - To list all indexes on a collection, use the getIndexes() method.
+        -- Example: db.collection.getIndexes()
+
+ - Dropping Indexes:
+    - To drop an index, use the dropIndex() method.
+        -- Example: db.collection.dropIndex("indexName")
+
+ - Using Indexes:
+    - MongoDB automatically uses indexes to improve query performance.
+    - Use the explain() method to see how MongoDB uses indexes for a query.
+        -- Example: db.collection.find({field: value}).explain()
+
+ - Example:
+    -- db.collection.aggregrate([
+        {
+            $search: {
+                index: "default", // optional unless you named your index something.
+                text: {
+                    query: "star wars",
+                    path: "title",
+                }
+            }
+        },
+        {
+            $project: {
+                title: 1,
+                year: 1,
+            }
+        },
+    ])
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SCHEMA VALIDATION -> By default, MongoDB has flexible schema. but schema validation rules can be created in order to ensure that all documents in the collection share 
+                     a similar structure. "$jsonSchema" operator allows us to define our document structure.
+ - Example:
+    -- db.createCollection("posts", {
+        validator: {
+            $jsonSchema: {
+                bsonType: "object",
+                required: ["title","body"],
+                properties: {
+                    title: {
+                        bsonType: "string",
+                        description: "Title of the post - Required",
+                    },
+                    body: {
+                        bsonType: "string",
+                        description: "Body of post - Required",
+                    },
+                    category: {
+                        bsonType: "string",
+                        description: "Category of post - Required",
+                    },
+                    likes: {
+                        bsonType: "int",
+                        description: "Post like count. Must be an integer - Optional",
+                    },
+                    tags: {
+                        bsonType: ["string"],
+                        description: "Must be an array of strings - Optional",
+                    },
+                    date: {
+                        bsonType: "date",
+                        description: "Must be a date - Optional",
+                    },
+                }
+            }
+        }
+    })
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
