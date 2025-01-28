@@ -36,5 +36,9 @@
 - [X] **21 January 2025** -> MongoDb and Mongoose
 - [X] **23 January 2025** -> Backend flow
 - [X] **24 January 2025** -> Backend flow
+- [X] **27 January 2025** -> Learning flow and CRUD Operations
+- [ ] **28 January 2025** -> CRUD Operations
 - [ ] **00 January 2025**
+- [ ] **00 January 2025**
+
 
